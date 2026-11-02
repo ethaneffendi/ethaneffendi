@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ethan Effendi — Research Portfolio</title>
+  <meta name="description" content="High school research work by Ethan Effendi.">
+  <style>
+    :root {
+      --bg: #fafaf8;
+      --text: #1d1d1f;
+      --muted: #5f6368;
+      --card: #ffffff;
+      --border: #e3e3e0;
+      --accent: #1a5fb4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #161618;
+        --text: #ececec;
+        --muted: #a0a0a6;
+        --card: #1f1f22;
+        --border: #333338;
+        --accent: #78aeed;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+    }
+    main { max-width: 960px; margin: 0 auto; padding: 48px 16px 64px; }
+    header h1 { margin: 0 0 4px; font-size: 2rem; letter-spacing: -0.01em; }
+    header p { margin: 0; color: var(--muted); }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 32px;
+    }
+    h2 { margin: 0 0 4px; font-size: 1.25rem; }
+    .meta { margin: 0 0 16px; color: var(--muted); font-size: 0.95rem; }
+    .viewer {
+      width: 100%;
+      height: 75vh;
+      min-height: 420px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .open { display: inline-block; margin-top: 12px; color: var(--accent); font-weight: 600; text-decoration: none; }
+    .open:hover { text-decoration: underline; }
+    footer { margin-top: 48px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Ethan Effendi</h1>
+      <p>Selected research from high school</p>
+    </header>
+
+    <section>
+      <h2>Flood Warning Forecasting</h2>
+      <p class="meta">Research board · 1st Place, Santa Clara Valley Science &amp; Engineering Fair</p>
+      <object class="viewer" data="pdfs/flood-warning-polygons.pdf" type="application/pdf" aria-label="Flood warning research board">
+        <p>Your browser can't display this PDF inline.</p>
+      </object>
+      <a class="open" href="pdfs/flood-warning-polygons.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+    </section>
+
+    <section>
+      <h2>PanCyto: Cytology Foundation Model</h2>
+      <p class="meta">Research poster · Dartmouth Health, Department of Pathology</p>
+      <object class="viewer" data="pdfs/edit-ai-poster.pdf" type="application/pdf" aria-label="PanCyto research poster">
+        <p>Your browser can't display this PDF inline.</p>
+      </object>
+      <a class="open" href="pdfs/edit-ai-poster.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+    </section>
+
+    <section>
+      <h2>ChemoFilter Hepatic Vasculature Study</h2>
+      <p class="meta">Symposium slides · UCSF RISE Summer Program, Radiology &amp; Biomedical Imaging</p>
+      <object class="viewer" data="pdfs/rise-symposium-slides.pdf" type="application/pdf" aria-label="ChemoFilter symposium slides">
+        <p>Your browser can't display this PDF inline.</p>
+      </object>
+      <a class="open" href="pdfs/rise-symposium-slides.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+    </section>
+
+    <footer>© 2026 Ethan Effendi</footer>
+  </main>
+</body>
+</html>
