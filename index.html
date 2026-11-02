@@ -5,78 +5,185 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ethan Effendi — Research Portfolio</title>
   <meta name="description" content="High school research work by Ethan Effendi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    /* Gear color-blocking: Topo-style fabrics on a clean, open background */
     :root {
-      --bg: #fafaf8;
-      --text: #1d1d1f;
-      --muted: #5f6368;
-      --card: #ffffff;
-      --border: #e3e3e0;
-      --accent: #1a5fb4;
+      --bg-canvas: #fdfdfc;
+      --bg-card: #ffffff;
+      --gray-100: #f1f0ec;
+      --gray-200: #e7e5df;
+      --gray-300: #dad8d0;
+      --gray-400: #bdbab0;
+      --fg1: #17181a;
+      --fg2: #2c2d30;
+      --fg3: #5f6166;
+      --peri: #7b83eb;  --peri-ink: #3d44a8;   /* periwinkle nylon */
+      --red: #e8473b;   --red-ink: #a8261d;    /* trail red */
+      --teal: #1f5e5b;  --teal-ink: #1f5e5b;   /* webbing teal */
+      --btn-bg: #17181a; --btn-fg: #ffffff;
+      --radius-sm: 3px;
+      --radius: 4px;
+      --radius-lg: 6px;         /* set radii to 0 for square corners */
+      --mark: var(--red);
+      --focus: #7b83eb;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #161618;
-        --text: #ececec;
-        --muted: #a0a0a6;
-        --card: #1f1f22;
-        --border: #333338;
-        --accent: #78aeed;
+        --bg-canvas: #1c1d20;
+        --bg-card: #26282c;
+        --gray-100: #2e3035;
+        --gray-200: #34363b;
+        --gray-300: #3f4147;
+        --gray-400: #55585f;
+        --fg1: #f2f1ed;
+        --fg2: #dcdad4;
+        --fg3: #a3a5ab;
+        --peri: #8e95f0;  --peri-ink: #c3c7fa;
+        --red: #e8473b;   --red-ink: #ffb0a8;
+        --teal: #2f8a85;  --teal-ink: #9fd6d2;
+        --btn-bg: #f2f1ed; --btn-fg: #17181a;
+        --focus: #8e95f0;
       }
     }
+    /* Each project wears its own fabric */
+    #flood, nav.toc li:nth-child(1) { --c: var(--peri); --c-ink: var(--peri-ink); }
+    #chemofilter, nav.toc li:nth-child(2) { --c: var(--red); --c-ink: var(--red-ink); }
+    #pancyto, nav.toc li:nth-child(3) { --c: var(--teal); --c-ink: var(--teal-ink); }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.55;
+      background: var(--bg-canvas);
+      color: var(--fg1);
+      font-family: "Adobe Clean", "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
-    main { max-width: 960px; margin: 0 auto; padding: 48px 16px 64px; }
-    header h1 { margin: 0 0 4px; font-size: 2rem; letter-spacing: -0.01em; }
-    header p { margin: 0; color: var(--muted); }
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+
+    /* Global nav, à la adobe.com */
+    .appbar {
+      position: sticky; top: 0; z-index: 10;
+      height: 64px;
+      background: var(--bg-card); color: var(--fg1);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .appbar-inner {
+      height: 100%; display: flex; align-items: center; justify-content: center;
+    }
+    .appbar .name {
+      align-self: stretch; margin: 0 0 -1px; /* cover the bar's bottom border */
+      display: flex; align-items: center; padding: 0 28px;
+      background: var(--mark); color: #fff;
+      font-size: 22px; font-weight: 900; letter-spacing: -.02em; white-space: nowrap;
+    }
+
+    main { max-width: 960px; margin: 0 auto; padding: 40px 16px 64px; }
+
+    /* Table of contents as a side-nav-style list */
+    nav.toc { margin-top: 0; }
+    nav.toc .label {
+      margin: 0 0 10px; font-size: 14px; font-weight: 700; color: var(--fg3);
+    }
+    nav.toc ol {
+      list-style: none; margin: 0; padding: 6px;
+      background: var(--bg-card); border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+    }
+    nav.toc a {
+      display: flex; gap: 14px; align-items: center;
+      padding: 12px; color: var(--fg1); text-decoration: none;
+      border-radius: var(--radius);
+    }
+    nav.toc a:hover { outline: 2px solid var(--c, var(--fg1)); outline-offset: -2px; }
+    nav.toc .num {
+      flex: none; width: 32px; height: 32px;
+      display: grid; place-items: center; font-size: 15px; font-weight: 800;
+      color: #fff; background: var(--c, var(--fg1)); border-radius: var(--radius-sm);
+    }
+    nav.toc .text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    nav.toc .head { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 10px; }
+    nav.toc .media { display: flex; flex-wrap: wrap; gap: 6px; }
+    nav.toc .chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      height: 22px; padding: 0 8px; border-radius: var(--radius-sm);
+      font-size: 12px; font-weight: 700; color: var(--fg2); background: var(--gray-200);
+    }
+    nav.toc .chip svg { width: 12px; height: 12px; flex: none; }
+    nav.toc .title { font-weight: 800; line-height: 1.3; }
+    nav.toc .sub { font-size: 14px; color: var(--fg3); }
+
+    /* Project cards */
     section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 32px;
+      /* color-blocked top panel, like a two-tone pack */
+      background: linear-gradient(var(--c), var(--c)) top / 100% 8px no-repeat, var(--bg-card);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-top: 24px;
+      scroll-margin-top: 80px;
     }
-    h2 { margin: 0 0 4px; font-size: 1.25rem; }
-    .meta { margin: 0 0 16px; color: var(--muted); font-size: 0.95rem; }
+    h2 { margin: 0 0 4px; font-size: 24px; line-height: 1.25; font-weight: 800; letter-spacing: -.01em; }
+    .meta { margin: 0 0 14px; color: var(--fg3); font-size: 15px; }
+    .skills { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .skills li {
+      height: 28px; padding: 0 12px; display: inline-flex; align-items: center;
+      font-size: 14px; font-weight: 600;
+      color: var(--c-ink); background: color-mix(in srgb, var(--c) 12%, var(--bg-card));
+      border-radius: var(--radius-sm);
+    }
     .viewer {
-      width: 100%;
-      height: 75vh;
-      min-height: 420px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: #fff;
+      display: block; width: 100%;
+      height: 75vh; min-height: 420px;
+      border: 1px solid var(--gray-300); border-radius: var(--radius);
+      background: #fff; color: #17181a;
     }
-    h3 { margin: 24px 0 12px; font-size: 1.05rem; }
-    .video { display: block; width: 100%; border-radius: 8px; background: #000; }
-    .open { display: inline-block; margin-top: 12px; color: var(--accent); font-weight: 600; text-decoration: none; }
-    .open:hover { text-decoration: underline; }
-    footer { margin-top: 48px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+    h3 { margin: 32px 0 12px; font-size: 18px; font-weight: 800; }
+    .video { display: block; width: 100%; background: #000; border-radius: var(--radius); }
+
+    /* Accent pill button */
+    .open {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 16px; height: 36px; padding: 0 18px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      color: var(--btn-fg); background: var(--btn-bg); border-radius: var(--radius);
+    }
+    .open:hover { outline: 2px solid var(--btn-bg); outline-offset: 2px; }
+
+    footer { margin-top: 48px; color: var(--fg3); font-size: 13px; text-align: center; }
   </style>
 </head>
 <body>
+  <header class="appbar"><div class="appbar-inner"><h1 class="name">Ethan Effendi</h1></div></header>
   <main>
-    <header>
-      <h1>Ethan Effendi</h1>
-    </header>
+    <nav class="toc" aria-label="Table of contents">
+      <p class="label">Projects</p>
+      <ol>
+        <li><a href="#flood"><span class="num">1</span><span class="text"><span class="head"><span class="title">Multimodal ResUNet Model for Flood Warning Forecasting</span><span class="sub">1st Place, Santa Clara Valley Science &amp; Engineering Fair</span></span><span class="media"><span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75v9.5H4z"/><path d="M9.5 1.75v3h3M6 8h4.5M6 10.5h4.5"/></svg>Poster</span></span></span></a></li>
+        <li><a href="#chemofilter"><span class="num">2</span><span class="text"><span class="head"><span class="title">ChemoFilter Hepatic Vasculature Study</span><span class="sub">UCSF Radiology &amp; Biomedical Imaging</span></span><span class="media"><span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="8.5" rx="1"/><path d="M8 11.25v2.5M5.5 13.75h5"/></svg>Slides</span><span class="chip"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8v10.4a.5.5 0 0 0 .76.43l8.3-5.2a.5.5 0 0 0 0-.86l-8.3-5.2a.5.5 0 0 0-.76.43z"/></svg>Video</span></span></span></a></li>
+        <li><a href="#pancyto"><span class="num">3</span><span class="text"><span class="head"><span class="title">PanCyto: Cytology Foundation Model</span><span class="sub">Dartmouth Health Pathology</span></span><span class="media"><span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M4 1.75h5.5L12.5 4.75v9.5H4z"/><path d="M9.5 1.75v3h3M6 8h4.5M6 10.5h4.5"/></svg>Poster</span><span class="chip"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8v10.4a.5.5 0 0 0 .76.43l8.3-5.2a.5.5 0 0 0 0-.86l-8.3-5.2a.5.5 0 0 0-.76.43z"/></svg>Video</span></span></span></a></li>
+      </ol>
+    </nav>
 
-    <section>
-      <h2>Flood Warning Forecasting</h2>
-      <p class="meta">Research board · 1st Place, Santa Clara Valley Science &amp; Engineering Fair</p>
+    <section id="flood">
+      <h2>Multimodal ResUNet Model for Flood Warning Forecasting</h2>
+      <p class="meta">1st Place, Santa Clara Valley Science &amp; Engineering Fair, Qualified for California Science &amp; Engineering Fair</p>
+      <ul class="skills" aria-label="Skills"><li>ResUNet</li><li>Geospatial Data</li><li>Time-Series Modeling</li></ul>
       <object class="viewer" data="pdfs/flood-warning-polygons.pdf" type="application/pdf" aria-label="Flood warning research board">
         <p>Your browser can't display this PDF inline.</p>
       </object>
       <a class="open" href="pdfs/flood-warning-polygons.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
     </section>
 
-    <section>
+    <section id="chemofilter">
       <h2>ChemoFilter Hepatic Vasculature Study</h2>
-      <p class="meta">Symposium slides · UCSF RISE Summer Program, Radiology &amp; Biomedical Imaging</p>
+      <p class="meta">Staff Intern @ UCSF Dept. of Radiology and Biomedical Imaging</p>
+      <ul class="skills" aria-label="Skills"><li>3D Image Segmentation</li><li>CT Image Processing</li><li>3D Slicer</li></ul>
       <object class="viewer" data="pdfs/rise-symposium-slides.pdf" type="application/pdf" aria-label="ChemoFilter symposium slides">
         <p>Your browser can't display this PDF inline.</p>
       </object>
@@ -85,14 +192,15 @@
       <video class="video" src="videos/rise-symposium-talk.mp4" controls preload="metadata" playsinline></video>
     </section>
 
-    <section>
+    <section id="pancyto">
       <h2>PanCyto: Cytology Foundation Model</h2>
-      <p class="meta">Research poster · Dartmouth Health, Department of Pathology</p>
+      <p class="meta">Dept. of Pathology @ Dartmouth Health</p>
+      <ul class="skills" aria-label="Skills"><li>Vision Transformers</li><li>Self-Supervised Learning</li><li>DINOv3</li></ul>
       <object class="viewer" data="pdfs/edit-ai-poster.pdf" type="application/pdf" aria-label="PanCyto research poster">
         <p>Your browser can't display this PDF inline.</p>
       </object>
       <a class="open" href="pdfs/edit-ai-poster.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
-      <h3>Video</h3>
+      <h3>Symposium Talk</h3>
       <video class="video" src="videos/pancyto-talk.mp4" controls preload="metadata" playsinline></video>
     </section>
 
