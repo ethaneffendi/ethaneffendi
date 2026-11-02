@@ -87,13 +87,18 @@
 
     /* Table of contents as a side-nav-style list */
     nav.toc { margin-top: 0; }
+    /* "Projects" is a folder tab sticking up from the list's top-left corner */
     nav.toc .label {
-      margin: 0 0 10px; font-size: 14px; font-weight: 700; color: var(--fg3);
+      position: relative; z-index: 1;
+      display: inline-block; margin: 0 0 -1px; padding: 8px 18px 7px;
+      font-size: 14px; font-weight: 800; color: var(--fg1);
+      background: var(--bg-card); border: 1px solid var(--gray-200); border-bottom: 0;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
     nav.toc ol {
       list-style: none; margin: 0; padding: 6px;
       background: var(--bg-card); border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg);
     }
     nav.toc a {
       display: flex; gap: 14px; align-items: center;
